@@ -1,0 +1,230 @@
+[
+  {
+    "id": "ai_writing",
+    "name": "AI Writing Assistant",
+    "department": "content",
+    "description": "Implement AI-powered content generation tools to speed up content creation tasks.",
+    "cost": 5000,
+    "duration": 7,
+    "icon": "🤖",
+    "prerequisites": [],
+    "effects": {
+      "contentTaskSpeed": 0.5,
+      "unlockFeatures": ["ai_content"]
+    },
+    "position": { "x": 100, "y": 100 }
+  },
+  {
+    "id": "video_seo",
+    "name": "Video SEO Tools",
+    "department": "content",
+    "description": "Unlock YouTube SEO optimization services. Opens new client types.",
+    "cost": 10000,
+    "duration": 14,
+    "icon": "📹",
+    "prerequisites": ["ai_writing"],
+    "effects": {
+      "unlockClientTypes": ["youtube_channel"],
+      "newProjectTypes": ["video_seo"]
+    },
+    "position": { "x": 250, "y": 100 }
+  },
+  {
+    "id": "multilingual",
+    "name": "Multilingual Platform",
+    "department": "content",
+    "description": "Expand to international markets with 5 new languages support.",
+    "cost": 15000,
+    "duration": 21,
+    "icon": "🌍",
+    "prerequisites": ["video_seo"],
+    "effects": {
+      "unlockLocations": ["berlin", "london", "paris"],
+      "reputationBonus": 100
+    },
+    "position": { "x": 400, "y": 100 }
+  },
+  {
+    "id": "core_web_vitals",
+    "name": "Core Web Vitals Analyzer",
+    "department": "technical",
+    "description": "Advanced tools for measuring and optimizing Core Web Vitals.",
+    "cost": 8000,
+    "duration": 10,
+    "icon": "⚡",
+    "prerequisites": [],
+    "effects": {
+      "technicalTaskSpeed": 0.3,
+      "projectQualityBonus": 0.1
+    },
+    "position": { "x": 100, "y": 250 }
+  },
+  {
+    "id": "crawling_engine",
+    "name": "Advanced Crawling Engine",
+    "department": "technical",
+    "description": "Build proprietary crawling technology for faster audits.",
+    "cost": 12000,
+    "duration": 15,
+    "icon": "🕷️",
+    "prerequisites": ["core_web_vitals"],
+    "effects": {
+      "technicalTaskSpeed": 0.5,
+      "unlockFeatures": ["site_audit_tool"]
+    },
+    "position": { "x": 250, "y": 250 }
+  },
+  {
+    "id": "automation_framework",
+    "name": "Automation Framework",
+    "department": "technical",
+    "description": "Automate repetitive technical SEO tasks. Major productivity boost.",
+    "cost": 20000,
+    "duration": 30,
+    "icon": "🔧",
+    "prerequisites": ["crawling_engine"],
+    "effects": {
+      "technicalTaskSpeed": 0.7,
+      "allEmployeesProductivity": 0.2
+    },
+    "position": { "x": 400, "y": 250 }
+  },
+  {
+    "id": "outreach_automation",
+    "name": "Outreach Automation",
+    "department": "linkbuilding",
+    "description": "Automate email outreach for link building campaigns.",
+    "cost": 7000,
+    "duration": 10,
+    "icon": "📧",
+    "prerequisites": [],
+    "effects": {
+      "linkBuildingTaskSpeed": 0.4,
+      "linkSuccessRate": 0.2
+    },
+    "position": { "x": 100, "y": 400 }
+  },
+  {
+    "id": "pr_network",
+    "name": "PR Network Access",
+    "department": "linkbuilding",
+    "description": "Gain access to exclusive PR and journalist networks for premium backlinks.",
+    "cost": 20000,
+    "duration": 20,
+    "icon": "📰",
+    "prerequisites": ["outreach_automation"],
+    "effects": {
+      "linkQualityBonus": 0.5,
+      "reputationBonus": 150
+    },
+    "position": { "x": 250, "y": 400 }
+  },
+  {
+    "id": "guest_posting",
+    "name": "Guest Posting Network",
+    "department": "linkbuilding",
+    "description": "Build a network of high-authority sites accepting guest posts.",
+    "cost": 10000,
+    "duration": 12,
+    "icon": "✍️",
+    "prerequisites": ["outreach_automation"],
+    "effects": {
+      "linkBuildingTaskSpeed": 0.3,
+      "linkSuccessRate": 0.3
+    },
+    "position": { "x": 250, "y": 500 }
+  },
+  {
+    "id": "crm_system",
+    "name": "CRM System",
+    "department": "business",
+    "description": "Implement customer relationship management for better client tracking.",
+    "cost": 5000,
+    "duration": 7,
+    "icon": "📊",
+    "prerequisites": [],
+    "effects": {
+      "clientRetention": 0.2,
+      "clientSatisfactionBonus": 10
+    },
+    "position": { "x": 100, "y": 550 }
+  },
+  {
+    "id": "project_management",
+    "name": "Project Management Suite",
+    "department": "business",
+    "description": "Professional PM tools for better workflow and efficiency.",
+    "cost": 8000,
+    "duration": 10,
+    "icon": "📋",
+    "prerequisites": ["crm_system"],
+    "effects": {
+      "allProjectsProductivity": 0.2,
+      "employeeHappinessBonus": 10
+    },
+    "position": { "x": 250, "y": 550 }
+  },
+  {
+    "id": "financial_forecasting",
+    "name": "Financial Forecasting AI",
+    "department": "business",
+    "description": "AI-powered financial predictions and business intelligence.",
+    "cost": 12000,
+    "duration": 14,
+    "icon": "💰",
+    "prerequisites": ["project_management"],
+    "effects": {
+      "revenueBonusPercent": 0.15,
+      "unlockFeatures": ["financial_insights"]
+    },
+    "position": { "x": 400, "y": 550 }
+  },
+  {
+    "id": "remote_work",
+    "name": "Remote Work Infrastructure",
+    "department": "meta",
+    "description": "Enable remote work options. Access to global talent pool.",
+    "cost": 10000,
+    "duration": 14,
+    "icon": "🏠",
+    "prerequisites": [],
+    "effects": {
+      "unlockRemoteHiring": true,
+      "talentPoolBonus": 0.5,
+      "rentCostReduction": 0.3
+    },
+    "position": { "x": 550, "y": 100 }
+  },
+  {
+    "id": "wellness_program",
+    "name": "Employee Wellness Program",
+    "department": "meta",
+    "description": "Comprehensive wellness benefits improve employee satisfaction.",
+    "cost": 6000,
+    "duration": 10,
+    "icon": "💚",
+    "prerequisites": [],
+    "effects": {
+      "allEmployeesHappiness": 10,
+      "allEmployeesLoyalty": 15,
+      "energyRecoveryBonus": 0.2
+    },
+    "position": { "x": 550, "y": 250 }
+  },
+  {
+    "id": "training_academy",
+    "name": "Training Academy",
+    "department": "meta",
+    "description": "In-house training program accelerates employee skill development.",
+    "cost": 25000,
+    "duration": 30,
+    "icon": "🎓",
+    "prerequisites": ["wellness_program"],
+    "effects": {
+      "employeeSkillGrowth": 0.5,
+      "trainingTimeReduction": 0.5,
+      "reputationBonus": 200
+    },
+    "position": { "x": 550, "y": 400 }
+  }
+]

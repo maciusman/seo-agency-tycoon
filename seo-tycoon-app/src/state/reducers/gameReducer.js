@@ -241,6 +241,28 @@ export const gameReducer = (state, action) => {
       return applyEventChoice(state, event, choice);
     }
 
+    case 'START_RESEARCH': {
+      const { research } = action.payload;
+
+      if (state.money < research.cost) {
+        return addNotification(state, 'Not enough money!', 'error');
+      }
+
+      return {
+        ...state,
+        money: state.money - research.cost,
+        research: {
+          ...state.research,
+          activeResearch: {
+            id: research.id,
+            progress: 0,
+            duration: research.duration,
+            startDay: state.gameDay,
+          },
+        },
+      };
+    }
+
     default:
       return state;
   }
@@ -397,6 +419,28 @@ function processDailyEvents(state) {
   // Add new client opportunities
   const newClient = generateRandomClient(state.gameDay);
   newState.availableClients = [...newState.availableClients, newClient];
+
+  // Update research progress
+  if (newState.research.activeResearch.id) {
+    const daysElapsed = newState.gameDay - newState.research.activeResearch.startDay;
+    newState.research.activeResearch.progress = daysElapsed;
+
+    // Check if research completed
+    if (daysElapsed >= newState.research.activeResearch.duration) {
+      newState.research.completedResearch.push(newState.research.activeResearch.id);
+      newState = addNotification(
+        newState,
+        `🔬 Research completed: ${newState.research.activeResearch.id}!`,
+        'success'
+      );
+      newState.research.activeResearch = {
+        id: null,
+        progress: 0,
+        duration: 0,
+        startDay: 0,
+      };
+    }
+  }
 
   // Check and trigger random events
   const triggeredEvent = checkAndTriggerEvents(newState);

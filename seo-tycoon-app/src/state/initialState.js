@@ -156,21 +156,12 @@ export const initialGameState = {
 
   // Research & unlocks
   research: {
-    availableResearch: [
-      {
-        id: 'ai-writing',
-        name: 'AI Writing Assistant',
-        cost: 5000,
-        duration: 7,
-        department: 'content',
-        unlocks: ['ai_content_generation'],
-      },
-    ],
     completedResearch: [],
     activeResearch: {
       id: null,
       progress: 0,
-      completionTime: 0,
+      duration: 0,
+      startDay: 0,
     },
   },
 
