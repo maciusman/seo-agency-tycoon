@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { useGame } from '../../state/context/GameContext';
+import EventModal from './EventModal';
 import './RightPanel.css';
 
 const RightPanel = () => {
   const { state, dispatch } = useGame();
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
   const handleClearNotification = (id) => {
     dispatch({ type: 'CLEAR_NOTIFICATION', payload: id });
@@ -45,15 +48,30 @@ const RightPanel = () => {
           {state.activeEvents.length === 0 ? (
             <div className="no-events">No active events</div>
           ) : (
-            state.activeEvents.map((event) => (
-              <div key={event.id} className="event-card">
-                <div className="event-title">{event.name}</div>
-                <div className="event-desc">{event.description}</div>
+            state.activeEvents.filter(e => !e.resolved).map((event) => (
+              <div
+                key={event.id}
+                className="event-card"
+                onClick={() => setSelectedEvent(event)}
+                style={{ cursor: 'pointer' }}
+              >
+                <div className="event-title">{event.title}</div>
+                <div className="event-desc">{event.description.substring(0, 80)}...</div>
+                {event.choices && event.choices.length > 0 && !event.selectedChoice && (
+                  <div className="event-action-needed">⚠️ Action needed!</div>
+                )}
               </div>
             ))
           )}
         </div>
       </div>
+
+      {selectedEvent && (
+        <EventModal
+          event={selectedEvent}
+          onClose={() => setSelectedEvent(null)}
+        />
+      )}
 
       <div className="panel-section">
         <h3>Quick Stats</h3>

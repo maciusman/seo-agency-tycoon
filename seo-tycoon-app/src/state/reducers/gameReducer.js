@@ -1,4 +1,5 @@
 import { saveGameToStorage, loadGameFromStorage } from '../../utils/helpers/saveSystem';
+import { checkAndTriggerEvents, applyEventChoice } from '../../systems/events/eventSystem';
 
 export const gameReducer = (state, action) => {
   switch (action.type) {
@@ -235,6 +236,11 @@ export const gameReducer = (state, action) => {
       };
     }
 
+    case 'APPLY_EVENT_CHOICE': {
+      const { event, choice } = action.payload;
+      return applyEventChoice(state, event, choice);
+    }
+
     default:
       return state;
   }
@@ -386,13 +392,24 @@ function updateProjectProgress(state) {
 
 // Daily events
 function processDailyEvents(state) {
+  let newState = { ...state };
+
   // Add new client opportunities
   const newClient = generateRandomClient(state.gameDay);
+  newState.availableClients = [...newState.availableClients, newClient];
 
-  return {
-    ...state,
-    availableClients: [...state.availableClients, newClient],
-  };
+  // Check and trigger random events
+  const triggeredEvent = checkAndTriggerEvents(newState);
+  if (triggeredEvent) {
+    newState.activeEvents = [...newState.activeEvents, triggeredEvent];
+    newState = addNotification(
+      newState,
+      `🎲 Event: ${triggeredEvent.title}`,
+      'warning'
+    );
+  }
+
+  return newState;
 }
 
 // Weekly events

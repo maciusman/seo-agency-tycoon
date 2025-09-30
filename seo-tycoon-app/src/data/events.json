@@ -1,0 +1,352 @@
+[
+  {
+    "id": "google_core_update_2025",
+    "type": "market_disruption",
+    "severity": "high",
+    "title": "🔴 Google Core Update Announced!",
+    "description": "Google has announced a major core algorithm update rolling out over the next 2 weeks. Many sites are expected to see ranking fluctuations.",
+    "triggerConditions": {
+      "minGameDay": 30,
+      "maxOccurrences": 3,
+      "cooldown": 90
+    },
+    "immediateEffects": {
+      "allProjectsProductivity": -0.30
+    },
+    "duration": 14,
+    "choices": [
+      {
+        "id": "train_team",
+        "label": "Emergency Training Session",
+        "description": "Organize immediate training on new algorithm factors. Reduces impact but costs money and time.",
+        "cost": 5000,
+        "timeRequired": 2,
+        "effects": {
+          "allProjectsProductivity": -0.15
+        },
+        "requirements": {
+          "minEmployees": 3
+        }
+      },
+      {
+        "id": "hire_consultant",
+        "label": "Hire Google Algorithm Expert",
+        "description": "Bring in expensive consultant to guide through update.",
+        "cost": 15000,
+        "effects": {
+          "allProjectsProductivity": 0,
+          "reputation": 50
+        }
+      },
+      {
+        "id": "pause_projects",
+        "label": "Pause All Projects",
+        "description": "Stop work until update settles. No productivity loss, but no progress either.",
+        "cost": 0,
+        "effects": {
+          "pauseAllProjects": true
+        },
+        "consequences": {
+          "clientSatisfaction": -10
+        }
+      },
+      {
+        "id": "ignore",
+        "label": "Weather the Storm",
+        "description": "Continue as normal, accept the productivity hit.",
+        "cost": 0,
+        "effects": {}
+      }
+    ],
+    "resolution": {
+      "text": "The Google Core Update has stabilized. Your team has learned valuable lessons.",
+      "effects": {
+        "allEmployeesExperience": 100
+      }
+    }
+  },
+  {
+    "id": "competitor_bankruptcy",
+    "type": "opportunity",
+    "severity": "medium",
+    "title": "🎯 Competitor Goes Bankrupt!",
+    "description": "QuickRank SEO has filed for bankruptcy! Their clients are looking for a new agency.",
+    "triggerConditions": {
+      "minGameDay": 60,
+      "maxOccurrences": 2,
+      "cooldown": 120
+    },
+    "duration": 7,
+    "choices": [
+      {
+        "id": "aggressive_marketing",
+        "label": "Aggressive Marketing Campaign",
+        "description": "Spend money to attract their former clients.",
+        "cost": 8000,
+        "effects": {
+          "newClients": 5,
+          "reputation": 30
+        }
+      },
+      {
+        "id": "hire_their_employees",
+        "label": "Hire Their Best Employees",
+        "description": "Poach their top talent before they scatter.",
+        "cost": 10000,
+        "effects": {
+          "seniorEmployeeApplications": 3
+        }
+      },
+      {
+        "id": "do_nothing",
+        "label": "Do Nothing",
+        "description": "Let the market sort itself out.",
+        "cost": 0,
+        "effects": {
+          "newClients": 1
+        }
+      }
+    ]
+  },
+  {
+    "id": "viral_case_study",
+    "type": "positive",
+    "severity": "low",
+    "title": "🚀 Your Case Study Went Viral!",
+    "description": "One of your successful projects was featured in a major SEO publication. Instant credibility boost!",
+    "triggerConditions": {
+      "minGameDay": 45,
+      "minCompletedProjects": 5,
+      "maxOccurrences": 2
+    },
+    "immediateEffects": {
+      "reputation": 200,
+      "newClients": 3
+    },
+    "duration": 0
+  },
+  {
+    "id": "employee_burnout",
+    "type": "hr_crisis",
+    "severity": "medium",
+    "title": "⚠️ Employee Burnout Warning!",
+    "description": "Multiple employees are showing signs of severe burnout. They're threatening to quit unless conditions improve.",
+    "triggerConditions": {
+      "minGameDay": 20,
+      "avgEmployeeEnergy": 30,
+      "maxOccurrences": 5,
+      "cooldown": 60
+    },
+    "duration": 3,
+    "choices": [
+      {
+        "id": "mandatory_vacation",
+        "label": "Mandatory Vacation Week",
+        "description": "Give everyone a paid week off. Projects pause but morale skyrockets.",
+        "cost": 0,
+        "effects": {
+          "pauseAllProjects": true,
+          "allEmployeesEnergy": 100,
+          "allEmployeesHappiness": 50,
+          "allEmployeesLoyalty": 20
+        },
+        "duration": 7
+      },
+      {
+        "id": "hire_more_staff",
+        "label": "Hire More Staff",
+        "description": "Reduce workload by hiring 2 junior employees immediately.",
+        "cost": 3000,
+        "effects": {
+          "hireJuniorEmployees": 2,
+          "allEmployeesHappiness": 20
+        }
+      },
+      {
+        "id": "improve_benefits",
+        "label": "Improve Benefits Package",
+        "description": "Invest in better perks and work environment.",
+        "cost": 5000,
+        "effects": {
+          "allEmployeesHappiness": 30,
+          "allEmployeesLoyalty": 15
+        }
+      },
+      {
+        "id": "ignore_complaints",
+        "label": "Ignore Complaints",
+        "description": "They'll get over it... probably.",
+        "cost": 0,
+        "effects": {
+          "allEmployeesHappiness": -20,
+          "allEmployeesLoyalty": -30,
+          "employeeQuitChance": 0.5
+        }
+      }
+    ]
+  },
+  {
+    "id": "government_grant",
+    "type": "opportunity",
+    "severity": "low",
+    "title": "💰 Government Tech Grant Available!",
+    "description": "The government is offering grants to digital agencies. Apply now!",
+    "triggerConditions": {
+      "minGameDay": 90,
+      "maxOccurrences": 1
+    },
+    "duration": 14,
+    "choices": [
+      {
+        "id": "apply_grant",
+        "label": "Apply for Grant",
+        "description": "Fill out paperwork. 70% chance of receiving $20,000.",
+        "cost": 500,
+        "effects": {
+          "grantApplication": true
+        },
+        "successChance": 0.7,
+        "successEffects": {
+          "money": 20000
+        }
+      },
+      {
+        "id": "skip_grant",
+        "label": "Too Much Paperwork",
+        "description": "Not worth the hassle.",
+        "cost": 0,
+        "effects": {}
+      }
+    ]
+  },
+  {
+    "id": "client_lawsuit",
+    "type": "legal",
+    "severity": "high",
+    "title": "⚖️ Client Threatens Lawsuit!",
+    "description": "An unhappy client claims your SEO work damaged their business. They're threatening legal action.",
+    "triggerConditions": {
+      "minGameDay": 50,
+      "minFailedProjects": 2,
+      "maxOccurrences": 2,
+      "cooldown": 180
+    },
+    "duration": 30,
+    "choices": [
+      {
+        "id": "settle_out_of_court",
+        "label": "Settle Out of Court",
+        "description": "Pay them off to avoid bad publicity.",
+        "cost": 25000,
+        "effects": {
+          "reputation": -50
+        }
+      },
+      {
+        "id": "fight_in_court",
+        "label": "Fight in Court",
+        "description": "Hire lawyers and fight. Expensive but might clear your name.",
+        "cost": 15000,
+        "effects": {},
+        "successChance": 0.6,
+        "successEffects": {
+          "reputation": 100
+        },
+        "failureEffects": {
+          "reputation": -200,
+          "additionalCost": 20000
+        }
+      },
+      {
+        "id": "fix_work_free",
+        "label": "Fix Their Site for Free",
+        "description": "Dedicate resources to make it right.",
+        "cost": 0,
+        "effects": {
+          "blockEmployees": 2,
+          "duration": 14,
+          "reputation": 50
+        }
+      }
+    ]
+  },
+  {
+    "id": "conference_invite",
+    "type": "opportunity",
+    "severity": "medium",
+    "title": "🎤 Conference Speaking Invitation!",
+    "description": "You've been invited to speak at Brighton SEO, the world's largest SEO conference!",
+    "triggerConditions": {
+      "minGameDay": 120,
+      "minReputation": 500,
+      "maxOccurrences": 2,
+      "cooldown": 180
+    },
+    "duration": 7,
+    "choices": [
+      {
+        "id": "accept_speaking",
+        "label": "Accept and Prepare Talk",
+        "description": "Great exposure but requires time to prepare.",
+        "cost": 5000,
+        "effects": {
+          "reputation": 300,
+          "newClientsHighValue": 3,
+          "employeeProductivity": -0.2,
+          "duration": 14
+        }
+      },
+      {
+        "id": "decline_speaking",
+        "label": "Decline Invitation",
+        "description": "Too busy right now.",
+        "cost": 0,
+        "effects": {}
+      }
+    ]
+  },
+  {
+    "id": "pandemic_lockdown",
+    "type": "crisis",
+    "severity": "high",
+    "title": "😷 Pandemic Forces Remote Work!",
+    "description": "A global pandemic has hit. All employees must work from home.",
+    "triggerConditions": {
+      "minGameDay": 180,
+      "maxOccurrences": 1
+    },
+    "immediateEffects": {
+      "allEmployeesRemote": true,
+      "allEmployeesProductivity": -0.3,
+      "allEmployeesHappiness": -20
+    },
+    "duration": 90,
+    "choices": [
+      {
+        "id": "invest_remote_infrastructure",
+        "label": "Invest in Remote Infrastructure",
+        "description": "Buy equipment, software licenses, improve internet.",
+        "cost": 15000,
+        "effects": {
+          "allEmployeesProductivity": -0.1,
+          "unlockRemoteWork": true
+        }
+      },
+      {
+        "id": "minimal_changes",
+        "label": "Make Minimal Changes",
+        "description": "Hope for the best.",
+        "cost": 2000,
+        "effects": {
+          "allEmployeesProductivity": -0.2
+        }
+      }
+    ],
+    "resolution": {
+      "text": "The pandemic is winding down. Employees can return to office, but remote work options are now available.",
+      "effects": {
+        "remoteWorkAvailable": true
+      }
+    }
+  }
+]
