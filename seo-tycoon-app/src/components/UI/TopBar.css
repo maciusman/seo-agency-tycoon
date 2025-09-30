@@ -1,0 +1,110 @@
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+  border-bottom: 3px solid #1a252f;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  height: 60px;
+  color: #ecf0f1;
+  font-family: 'Courier New', monospace;
+}
+
+.top-bar-left,
+.top-bar-center,
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.stat-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #95a5a6;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.stat-value {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.stat-value.positive {
+  color: #2ecc71;
+}
+
+.stat-value.negative {
+  color: #e74c3c;
+}
+
+.time-display {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 5px 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.time-controls {
+  display: flex;
+  gap: 5px;
+}
+
+.btn-control {
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: #ecf0f1;
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.btn-control:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn-control.active {
+  background: #3498db;
+  border-color: #2980b9;
+  box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+}
+
+.btn-save {
+  padding: 8px 15px;
+  background: #27ae60;
+  border: 1px solid #229954;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.btn-save:hover {
+  background: #2ecc71;
+  box-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+}
+
+.btn-save:active {
+  transform: translateY(1px);
+}

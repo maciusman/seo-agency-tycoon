@@ -1,0 +1,175 @@
+.bottom-panel {
+  height: 220px;
+  background: linear-gradient(180deg, #34495e 0%, #2c3e50 100%);
+  border-top: 3px solid #1a252f;
+  color: #ecf0f1;
+  font-family: 'Courier New', monospace;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-header {
+  padding: 10px 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.panel-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #3498db;
+}
+
+.panel-content {
+  flex: 1;
+  padding: 15px 20px;
+  overflow-y: auto;
+}
+
+.build-menu h4 {
+  margin: 0 0 10px 0;
+  font-size: 14px;
+  color: #95a5a6;
+}
+
+.building-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.building-btn {
+  padding: 10px;
+  background: rgba(52, 152, 219, 0.2);
+  border: 2px solid #3498db;
+  border-radius: 4px;
+  color: #ecf0f1;
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.building-btn:hover:not(.disabled) {
+  background: rgba(52, 152, 219, 0.4);
+  border-color: #5dade2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+}
+
+.building-btn.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  border-color: #7f8c8d;
+}
+
+.building-name {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.building-cost {
+  font-size: 11px;
+  color: #2ecc71;
+}
+
+.building-btn.disabled .building-cost {
+  color: #e74c3c;
+}
+
+.tile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tile-info p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.description {
+  color: #95a5a6;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.btn-demolish {
+  padding: 8px 15px;
+  background: #e74c3c;
+  border: 1px solid #c0392b;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  font-weight: bold;
+  transition: all 0.2s;
+  align-self: flex-start;
+}
+
+.btn-demolish:hover {
+  background: #c0392b;
+  box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+}
+
+.employee-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.info-row span:first-child {
+  color: #95a5a6;
+  min-width: 120px;
+}
+
+.info-row .value {
+  color: #ecf0f1;
+  font-weight: bold;
+}
+
+.progress-bar {
+  position: relative;
+  width: 200px;
+  height: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.progress-fill {
+  height: 100%;
+  transition: width 0.3s ease;
+  border-radius: 10px;
+}
+
+.progress-fill.energy {
+  background: linear-gradient(90deg, #3498db 0%, #5dade2 100%);
+}
+
+.progress-fill.happiness {
+  background: linear-gradient(90deg, #2ecc71 0%, #58d68d 100%);
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 11px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+}

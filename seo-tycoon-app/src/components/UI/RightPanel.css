@@ -1,0 +1,160 @@
+.right-panel {
+  width: 300px;
+  background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%);
+  border-left: 3px solid #1a252f;
+  overflow-y: auto;
+  color: #ecf0f1;
+  font-family: 'Courier New', monospace;
+}
+
+.panel-section {
+  padding: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.panel-section h3 {
+  margin: 0 0 15px 0;
+  font-size: 14px;
+  color: #3498db;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.notifications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.no-notifications,
+.no-events {
+  text-align: center;
+  padding: 20px;
+  color: #95a5a6;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.notification {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 3px solid;
+  border-radius: 4px;
+  font-size: 12px;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.notification.success {
+  border-left-color: #2ecc71;
+}
+
+.notification.error {
+  border-left-color: #e74c3c;
+}
+
+.notification.warning {
+  border-left-color: #f39c12;
+}
+
+.notification.info {
+  border-left-color: #3498db;
+}
+
+.notification-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  flex: 1;
+}
+
+.notification-icon {
+  font-size: 14px;
+}
+
+.notification-message {
+  flex: 1;
+  line-height: 1.4;
+}
+
+.btn-clear-notif {
+  background: none;
+  border: none;
+  color: #95a5a6;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  padding: 0;
+  margin-left: 5px;
+  transition: color 0.2s;
+}
+
+.btn-clear-notif:hover {
+  color: #ecf0f1;
+}
+
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.event-card {
+  padding: 12px;
+  background: rgba(241, 196, 15, 0.1);
+  border: 1px solid #f39c12;
+  border-radius: 4px;
+}
+
+.event-title {
+  font-size: 13px;
+  font-weight: bold;
+  color: #f39c12;
+  margin-bottom: 5px;
+}
+
+.event-desc {
+  font-size: 11px;
+  color: #ecf0f1;
+  line-height: 1.4;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.stat-item {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: #95a5a6;
+  margin-bottom: 5px;
+}
+
+.stat-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #3498db;
+}

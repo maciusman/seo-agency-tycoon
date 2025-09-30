@@ -1,0 +1,244 @@
+.projects-panel {
+  flex: 1;
+  background: #2c3e50;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.project-stats {
+  display: flex;
+  gap: 10px;
+}
+
+.stat-badge {
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+}
+
+.stat-badge.active {
+  background: rgba(52, 152, 219, 0.2);
+  border: 1px solid #3498db;
+  color: #3498db;
+}
+
+.stat-badge.completed {
+  background: rgba(46, 204, 113, 0.2);
+  border: 1px solid #2ecc71;
+  color: #2ecc71;
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.project-card {
+  background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+  border: 2px solid rgba(52, 152, 219, 0.3);
+  border-radius: 8px;
+  padding: 20px;
+  color: #ecf0f1;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-title h3 {
+  margin: 0 0 5px 0;
+  font-size: 20px;
+  color: #ecf0f1;
+}
+
+.project-type {
+  font-size: 12px;
+  color: #95a5a6;
+  text-transform: capitalize;
+}
+
+.project-budget {
+  font-size: 24px;
+  font-weight: bold;
+  color: #2ecc71;
+}
+
+.project-progress-main {
+  margin-bottom: 20px;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #95a5a6;
+}
+
+.progress-label span:last-child {
+  font-weight: bold;
+  color: #3498db;
+}
+
+.progress-bar-main {
+  height: 24px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.progress-fill-main {
+  height: 100%;
+  background: linear-gradient(90deg, #3498db 0%, #5dade2 100%);
+  transition: width 0.5s ease;
+  border-radius: 12px;
+}
+
+.tasks-section h4 {
+  margin: 0 0 15px 0;
+  font-size: 14px;
+  color: #3498db;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-item {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.task-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.task-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ecf0f1;
+}
+
+.task-status {
+  font-size: 11px;
+  color: #95a5a6;
+  text-transform: capitalize;
+}
+
+.task-progress {
+  font-size: 14px;
+  font-weight: bold;
+  color: #3498db;
+}
+
+.task-progress-bar {
+  height: 8px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.task-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2ecc71 0%, #58d68d 100%);
+  transition: width 0.3s ease;
+  border-radius: 4px;
+}
+
+.task-assignment {
+  margin-top: 8px;
+}
+
+.employee-select {
+  width: 100%;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: #ecf0f1;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.employee-select:hover {
+  border-color: #3498db;
+}
+
+.assigned-employee {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: rgba(46, 204, 113, 0.2);
+  border: 1px solid #2ecc71;
+  border-radius: 4px;
+}
+
+.employee-avatar-small {
+  font-size: 16px;
+}
+
+.employee-name-small {
+  font-size: 12px;
+  color: #ecf0f1;
+  font-weight: bold;
+}
+
+.completed-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.completed-section h3 {
+  margin: 0 0 15px 0;
+  font-size: 18px;
+  color: #2ecc71;
+}
+
+.completed-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.completed-project {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  background: rgba(46, 204, 113, 0.1);
+  border: 1px solid rgba(46, 204, 113, 0.3);
+  border-radius: 4px;
+  color: #ecf0f1;
+}
+
+.project-reward {
+  font-weight: bold;
+  color: #2ecc71;
+}
