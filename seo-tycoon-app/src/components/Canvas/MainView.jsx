@@ -4,6 +4,7 @@ import EmployeesPanel from '../Game/EmployeesPanel';
 import ProjectsPanel from '../Game/ProjectsPanel';
 import ClientsPanel from '../Game/ClientsPanel';
 import ResearchPanel from '../Game/ResearchPanel';
+import MarketPanel from '../Game/MarketPanel';
 import './MainView.css';
 
 const MainView = () => {
@@ -22,12 +23,7 @@ const MainView = () => {
       case 'research':
         return <ResearchPanel />;
       case 'market':
-        return (
-          <div className="placeholder-panel">
-            <h2>📈 Market Analysis</h2>
-            <p>Market analysis and competition view coming soon!</p>
-          </div>
-        );
+        return <MarketPanel />;
       default:
         return <OfficeCanvas />;
     }

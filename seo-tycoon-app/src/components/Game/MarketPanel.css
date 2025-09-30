@@ -1,0 +1,342 @@
+.market-panel {
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  color: #e2e8f0;
+}
+
+.market-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #334155;
+}
+
+.market-header h2 {
+  font-size: 28px;
+  margin: 0;
+  color: #60a5fa;
+}
+
+.market-location {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background: #1e293b;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+}
+
+.location-label {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.location-value {
+  color: #e2e8f0;
+  font-weight: 600;
+}
+
+/* Market Section */
+.market-section {
+  margin-bottom: 30px;
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #334155;
+}
+
+.market-section h3 {
+  font-size: 20px;
+  margin: 0 0 20px 0;
+  color: #60a5fa;
+}
+
+/* Market Share Chart */
+.market-share-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.market-share-bar {
+  background: #0f172a;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  transition: transform 0.2s;
+}
+
+.market-share-bar:hover {
+  transform: translateX(5px);
+  border-color: #475569;
+}
+
+.market-share-bar.player {
+  border-color: #22c55e;
+  background: rgba(34, 197, 94, 0.1);
+}
+
+.market-share-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.company-name {
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.market-share-bar.player .company-name {
+  color: #22c55e;
+}
+
+.share-value {
+  font-weight: 700;
+  color: #60a5fa;
+}
+
+.market-share-fill-container {
+  width: 100%;
+  height: 20px;
+  background: #1e293b;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.market-share-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  transition: width 0.5s ease;
+}
+
+.market-share-bar.player .market-share-fill {
+  background: linear-gradient(90deg, #16a34a, #22c55e);
+}
+
+/* Competitors Grid */
+.competitors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.competitor-card {
+  background: #0f172a;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  transition: all 0.2s;
+}
+
+.competitor-card:hover {
+  border-color: #475569;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.competitor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #334155;
+}
+
+.competitor-header h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #e2e8f0;
+}
+
+.strength-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.strength-1,
+.strength-2 {
+  background: #dc2626;
+  color: white;
+}
+
+.strength-3,
+.strength-4 {
+  background: #f59e0b;
+  color: white;
+}
+
+.strength-5 {
+  background: #10b981;
+  color: white;
+}
+
+.competitor-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.info-label {
+  color: #94a3b8;
+}
+
+.info-value {
+  color: #e2e8f0;
+  font-weight: 500;
+}
+
+.strategy-badge {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.strategy-aggressive {
+  background: #dc2626;
+  color: white;
+}
+
+.strategy-premium {
+  background: #8b5cf6;
+  color: white;
+}
+
+.strategy-balanced {
+  background: #3b82f6;
+  color: white;
+}
+
+.acquisition-info {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #334155;
+}
+
+.acquisition-btn {
+  width: 100%;
+  padding: 8px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.acquisition-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+}
+
+/* Player Stats */
+.player-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.stat-card {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: #0f172a;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #334155;
+  transition: all 0.2s;
+}
+
+.stat-card:hover {
+  border-color: #475569;
+  transform: translateY(-2px);
+}
+
+.stat-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #60a5fa;
+}
+
+/* Insights */
+.insights-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.insight-card {
+  display: flex;
+  gap: 12px;
+  background: #0f172a;
+  padding: 16px;
+  border-radius: 8px;
+  border-left: 4px solid #60a5fa;
+}
+
+.insight-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.insight-content {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
+
+.insight-content strong {
+  color: #e2e8f0;
+}
+
+/* Scrollbar styling */
+.market-panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.market-panel::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+.market-panel::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+
+.market-panel::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
