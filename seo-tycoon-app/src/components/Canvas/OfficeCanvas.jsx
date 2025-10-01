@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { useGame } from '../../state/context/GameContext';
 import { isoToScreen, screenToIso } from '../../utils/rendering/isometric';
-import { generateAllSprites } from '../../utils/rendering/spriteGenerator';
+import { generateAllAdvancedSprites } from '../../utils/rendering/advancedSpriteGenerator';
+import { drawIsometricShadow, drawSoftShadow, applyAmbientLight } from '../../utils/rendering/shadowRenderer';
 import './OfficeCanvas.css';
 
 const OfficeCanvas = () => {
@@ -28,11 +29,13 @@ const OfficeCanvas = () => {
   useEffect(() => {
     const loadSprites = async () => {
       try {
-        const generatedSprites = await generateAllSprites();
+        console.log('🎨 Loading advanced pixel art sprites...');
+        const generatedSprites = await generateAllAdvancedSprites();
         setSprites(generatedSprites);
         setSpritesLoaded(true);
+        console.log('✅ All sprites loaded successfully!');
       } catch (error) {
-        console.error('Failed to load sprites:', error);
+        console.error('❌ Failed to load sprites:', error);
         setSpritesLoaded(false);
       }
     };
@@ -52,58 +55,105 @@ const OfficeCanvas = () => {
     // Clear canvas
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
+    // Background color
+    ctx.fillStyle = '#2c3e50';
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
     // Apply camera transform
     ctx.save();
     ctx.translate(camera.x, camera.y);
     ctx.scale(camera.zoom, camera.zoom);
 
-    // Render tiles
+    // Disable image smoothing for crisp pixels
+    ctx.imageSmoothingEnabled = false;
+
+    // LAYER 1: Floor tiles
     state.agency.tiles.forEach((tile, index) => {
-      renderTile(ctx, tile, index);
+      renderFloorTile(ctx, tile, index);
     });
 
-    // Render employees
+    // LAYER 2: Shadows for buildings and characters
+    state.agency.tiles.forEach((tile) => {
+      if (tile.buildingType) {
+        const { x, y } = isoToScreen(tile.x, tile.y, TILE_WIDTH, TILE_HEIGHT);
+        drawSoftShadow(ctx, x, y + 10, 40, 20, 0.3);
+      }
+    });
+
+    state.agency.employees.forEach((employee) => {
+      if (employee.deskId !== null) {
+        const desk = state.agency.tiles[employee.deskId];
+        if (desk) {
+          const { x, y } = isoToScreen(desk.x, desk.y, TILE_WIDTH, TILE_HEIGHT);
+          drawIsometricShadow(ctx, x, y - 30, 16, 8, 0.25);
+        }
+      }
+    });
+
+    // LAYER 3: Buildings/Furniture
+    state.agency.tiles.forEach((tile) => {
+      if (tile.buildingType) {
+        renderBuilding(ctx, tile);
+      }
+    });
+
+    // LAYER 4: Characters
     state.agency.employees.forEach((employee) => {
       if (employee.deskId !== null) {
         renderEmployee(ctx, employee);
       }
     });
 
+    // LAYER 5: Selection highlight (on top)
+    if (state.ui.selectedTile !== null) {
+      const tile = state.agency.tiles[state.ui.selectedTile];
+      if (tile) {
+        const { x, y } = isoToScreen(tile.x, tile.y, TILE_WIDTH, TILE_HEIGHT);
+        ctx.strokeStyle = '#ffd700';
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + TILE_WIDTH / 2, y + TILE_HEIGHT / 2);
+        ctx.lineTo(x, y + TILE_HEIGHT);
+        ctx.lineTo(x - TILE_WIDTH / 2, y + TILE_HEIGHT / 2);
+        ctx.closePath();
+        ctx.stroke();
+      }
+    }
+
     ctx.restore();
+
+    // LAYER 6: Ambient lighting (full screen overlay)
+    const hour = state.gameHour;
+    let timeOfDay = 'day';
+    if (hour >= 6 && hour < 9) timeOfDay = 'morning';
+    else if (hour >= 17 && hour < 20) timeOfDay = 'evening';
+    else if (hour >= 20 || hour < 6) timeOfDay = 'night';
+
+    applyAmbientLight(ctx, ctx.canvas.width, ctx.canvas.height, timeOfDay);
   };
 
-  const renderTile = (ctx, tile, index) => {
+  const renderFloorTile = (ctx, tile, index) => {
     const { x, y } = isoToScreen(tile.x, tile.y, TILE_WIDTH, TILE_HEIGHT);
 
-    // Check if selected
-    const isSelected = state.ui.selectedTile === index;
+    // Choose floor type based on tile position or metadata
+    const floorType = (tile.x + tile.y) % 3 === 0 ? 'floor_carpet' : 'floor_wood';
 
-    // Draw tile base using sprite or fallback
-    if (sprites && sprites.has('floor_basic')) {
-      const floorSprite = sprites.get('floor_basic');
+    // Draw floor sprite
+    if (sprites && sprites.has(floorType)) {
+      const floorSprite = sprites.get(floorType);
       ctx.drawImage(floorSprite, x - TILE_WIDTH / 2, y, TILE_WIDTH, TILE_HEIGHT);
-
-      // Highlight if selected
-      if (isSelected) {
-        ctx.fillStyle = 'rgba(255, 215, 0, 0.4)';
-        drawIsoDiamond(ctx, x, y, TILE_WIDTH, TILE_HEIGHT);
-      }
+    } else if (sprites && sprites.has('floor_wood')) {
+      const floorSprite = sprites.get('floor_wood');
+      ctx.drawImage(floorSprite, x - TILE_WIDTH / 2, y, TILE_WIDTH, TILE_HEIGHT);
     } else {
-      // Fallback rendering
-      ctx.fillStyle = tile.type === 'floor' ? '#8fbc8f' : '#a0a0a0';
-      if (isSelected) {
-        ctx.fillStyle = '#ffd700';
-      }
+      // Fallback
+      ctx.fillStyle = '#c19a6b';
       drawIsoDiamond(ctx, x, y, TILE_WIDTH, TILE_HEIGHT);
     }
 
-    // Draw building if present
-    if (tile.buildingType) {
-      renderBuilding(ctx, x, y, tile.buildingType);
-    }
-
-    // Draw grid lines
-    ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)';
+    // Subtle grid lines for depth
+    ctx.strokeStyle = 'rgba(0, 0, 0, 0.08)';
     ctx.lineWidth = 1;
     ctx.beginPath();
     ctx.moveTo(x, y);
@@ -124,7 +174,10 @@ const OfficeCanvas = () => {
     ctx.fill();
   };
 
-  const renderBuilding = (ctx, x, y, buildingType) => {
+  const renderBuilding = (ctx, tile) => {
+    const { x, y } = isoToScreen(tile.x, tile.y, TILE_WIDTH, TILE_HEIGHT);
+    const buildingType = tile.buildingType;
+
     const spriteMap = {
       desk_basic: 'desk_basic',
       desk_premium: 'desk_premium',

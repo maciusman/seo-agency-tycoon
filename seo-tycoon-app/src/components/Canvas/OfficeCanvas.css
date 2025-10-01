@@ -11,4 +11,10 @@
   border: 2px solid #1a252f;
   cursor: pointer;
   background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+
+  /* Pixel-perfect rendering for crisp sprites */
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
 }

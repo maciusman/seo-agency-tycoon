@@ -3,6 +3,26 @@ class SpriteLoader {
   constructor() {
     this.sprites = new Map();
     this.loading = new Map();
+    this.loadProgress = { loaded: 0, total: 0 };
+    this.onProgressCallbacks = [];
+  }
+
+  /**
+   * Register a progress callback
+   */
+  onProgress(callback) {
+    this.onProgressCallbacks.push(callback);
+  }
+
+  /**
+   * Notify all progress callbacks
+   */
+  notifyProgress() {
+    const progress = this.loadProgress.total > 0
+      ? this.loadProgress.loaded / this.loadProgress.total
+      : 0;
+
+    this.onProgressCallbacks.forEach(cb => cb(progress, this.loadProgress));
   }
 
   /**
@@ -42,15 +62,45 @@ class SpriteLoader {
   }
 
   /**
-   * Load multiple sprites at once
+   * Load multiple sprites at once with progress tracking
    * @param {Object} spriteMap - Object with name: path pairs
    * @returns {Promise<void>}
    */
   async loadBatch(spriteMap) {
-    const promises = Object.entries(spriteMap).map(([name, path]) =>
-      this.load(name, path)
-    );
+    const entries = Object.entries(spriteMap);
+    this.loadProgress.total = entries.length;
+    this.loadProgress.loaded = 0;
+
+    const promises = entries.map(async ([name, path]) => {
+      try {
+        await this.load(name, path);
+        this.loadProgress.loaded++;
+        this.notifyProgress();
+      } catch (error) {
+        console.warn(`Failed to load sprite ${name}:`, error);
+        this.loadProgress.loaded++;
+        this.notifyProgress();
+      }
+    });
+
     await Promise.all(promises);
+  }
+
+  /**
+   * Load sprites from canvas elements (for generated sprites)
+   */
+  loadFromCanvas(name, canvas) {
+    this.sprites.set(name, canvas);
+    return canvas;
+  }
+
+  /**
+   * Batch load from canvas map
+   */
+  loadBatchFromCanvas(canvasMap) {
+    canvasMap.forEach((canvas, name) => {
+      this.sprites.set(name, canvas);
+    });
   }
 
   /**
